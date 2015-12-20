@@ -11,14 +11,14 @@ var util = require('util'),
     url = require('url'),
     events = require('events');
 
-var DEFAULT_PORT = 1234;
+var DEFAULT_PORT = 5000;
 
 function main(argv) {
     new HttpServer({
         'GET':createServlet(StaticServlet),
         'POST':createServlet(StaticServlet),
         'HEAD':createServlet(StaticServlet)
-    }).start(Number(argv[2]) || DEFAULT_PORT);
+    }).start(Number(process.env.PORT || DEFAULT_PORT));
 }
 
 function escapeHtml(value) {
