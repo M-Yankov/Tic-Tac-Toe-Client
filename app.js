@@ -91,7 +91,7 @@
         .config(['$routeProvider', '$locationProvider', configuration])
         .run(['$http', '$cookies', '$rootScope', '$location', 'auth', 'notifier', run])
         .value('toastr', toastr)
-        .constant('domain', 'http://localhost:3331/');
+        .constant('domain', 'http://tic-tac-toeserver.apphb.com/');
 
     angular.module('tttGame.directives', []);
 
