@@ -1,11 +1,9 @@
 {
   "name": "tic-tac-toe-client",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Pesho",
-  "license": "MIT"
+  "author": "M-Yankov",
+  "license": "MIT",
+  "description": "Tic tac toe game SPA",
+  "repository": "https://github.com/M-Yankov/Tic-Tac-Toe-Client/",
+  "devDependencies": {}
 }
