@@ -6,6 +6,15 @@
     var authService = function authService($http, $q, $cookies, identity, domain) {
         var TOKEN_KEY = 'authentication';
 
+        /**
+         *
+         * @param {Object} user
+         * @param {String} user.username Username of the new User
+         * @param {String} user.password Password of the new User
+         * @param {String} user.confirmPassword Must match the password of the new User
+         * @param {String} user.email Should contains '@' in the string
+         * @returns {*}
+         */
         var register = function (user) {
             var deferred = $q.defer();
 

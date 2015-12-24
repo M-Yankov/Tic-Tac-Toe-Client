@@ -2,9 +2,12 @@
 (function () {
     'use strict';
 
-    function GameService($http, $q, domain) {
+    function GameService(dataService) {
 
         function createGame() {
+
+           return dataService.postRequest('api/games/create');
+/*
             var deferred = $q.defer();
 
             $http.post(domain + 'api/games/create')
@@ -14,11 +17,14 @@
                     deferred.reject(errorResponse);
                 });
 
-            return deferred.promise;
+            return deferred.promise;*/
         }
 
         function joinGame() {
-            var deferred = $q.defer();
+
+            return dataService.postRequest('api/games/join');
+
+            /*var deferred = $q.defer();
 
             $http.post(domain + 'api/games/join')
                 .then(function (successResponse) {
@@ -27,11 +33,13 @@
                     deferred.reject(errorResponse);
                 });
 
-            return deferred.promise;
+            return deferred.promise;*/
         }
 
         function details(id) {
-            var deferred = $q.defer();
+
+            return dataService.getRequest('api/games/status?gameId=' + id);
+            /*var deferred = $q.defer();
 
             $http.get(domain + 'api/games/status?gameId=' + id)
                 .then(function (successResponse) {
@@ -40,11 +48,13 @@
                     deferred.reject(errorResponse);
                 });
 
-            return deferred.promise;
+            return deferred.promise;*/
         }
 
         function play(tileRequest) {
 
+            return dataService.postRequest('api/games/play', tileRequest);
+/*
             var deferred = $q.defer();
 
             $http.post(domain + 'api/games/play', tileRequest)
@@ -55,11 +65,13 @@
                     deferred.reject(errorResponse);
                 });
 
-            return deferred.promise;
+            return deferred.promise;*/
         }
 
         function allGames() {
-            var deferred = $q.defer();
+
+            return dataService.getRequest('api/games/all');
+            /*var deferred = $q.defer();
 
             $http.get(domain + 'api/games/all')
                 .then(function (successResponse) {
@@ -68,10 +80,12 @@
                     deferred.reject(errorResponse);
                 });
 
-            return deferred.promise;
+            return deferred.promise;*/
         }
 
         function getPrivateGames() {
+            return dataService.getRequest('api/games/PrivateGames');
+            /*
             var deferred = $q.defer();
 
             $http.get(domain + 'api/games/PrivateGames')
@@ -81,7 +95,7 @@
                     deferred.reject(errorResponse);
                 });
 
-            return deferred.promise;
+            return deferred.promise;*/
         }
 
         return {
@@ -95,5 +109,5 @@
     }
 
     angular.module('tttGame.services')
-        .factory('gameManager', ['$http', '$q', 'domain', GameService]);
+        .factory('gameManager', ['dataService', GameService]);
 }());
