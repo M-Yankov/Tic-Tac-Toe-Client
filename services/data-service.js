@@ -17,7 +17,7 @@
                 params: queryParams
             })
                 .then(function (response) {
-                    deferred.resolve(response); // TODO should it be .data ?
+                    deferred.resolve(response.data);
                 }, function (error) {
                     deferred.reject(error);
                 });
@@ -36,7 +36,7 @@
 
             $http.post(domain + url, body)
                 .then(function (response) {
-                   deferred.resolve(response); // TODO .data ?
+                   deferred.resolve(response.data);
                 }, function (error) {
                     deferred.reject(error);
                 });

@@ -12,7 +12,7 @@
         function getAllGames() {
             gameManager.allGames()
                 .then(function (response) {
-                    vm.allGames = response.data;
+                    vm.allGames = response;
                 }, function (errorResponse) {
                     var errors = {};
                     notifier.error(errorResponse.data.Message, 'Error');

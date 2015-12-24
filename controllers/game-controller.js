@@ -16,7 +16,7 @@
         $scope.$on('$destroy', function () {
             // Make sure that the interval is destroyed too
             $interval.cancel(promiseToDestroy);
-            console.log('DEEEEESTORUYYYYYYYY');
+            console.log('Destroyed');
         });
 
         vm.createGame = function () {
@@ -24,7 +24,7 @@
                 .then(function (response) {
                     notifier.success('Game created', 'Success!');
                     console.log(response);
-                    $location.path('/game/' + response.data);
+                    $location.path('/game/' + response);
                 }, function (errResponse) {
                     notifier.error('Cannot create game', 'Error');
                     console.log(errResponse);
@@ -35,10 +35,10 @@
             gameManager.joinGame()
                 .then(function (successEnter) {
                     notifier.success('You just joined in the game!', 'Success!');
-                    $location.path('/game/' + successEnter.data);
+                    $location.path('/game/' + successEnter);
 
                 }, function (error) {
-                    notifier.error('Currently there are no games', 'Game not found!');
+                    notifier.error('Currently there are no games', 'Games not found!');
                 });
         };
 
@@ -123,9 +123,9 @@
             gameManager.gameDetails(idOfTheGame)
                 .then(function (response) {
 
-                    stopIntervalIfBoardChanged(response.data);
+                    stopIntervalIfBoardChanged(response);
 
-                    vm.gameInfo = response.data;
+                    vm.gameInfo = response;
 
                     if (vm.gameInfo.State >= 3) {
                         $interval.cancel(promiseToDestroy);
