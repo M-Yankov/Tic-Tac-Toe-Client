@@ -5,10 +5,6 @@
     function RegisterController($location, auth, notifier) {
         var vm = this;
 
-        vm.return = function () {
-            $location.path('/');
-        };
-
         vm.makeRegistration = function (user, form) {
             vm.hasError = false;
             if (form.$valid) {
