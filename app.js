@@ -70,6 +70,11 @@
                 controllerAs: CONTROLLER_AS,
                 resolve: routeResolvers.authenticationRequired
             })
+            .when('/about', {
+                templateUrl: 'templates/about-page-template.html',
+                controller: 'AboutController',
+                controllerAs: CONTROLLER_AS
+            })
             .otherwise({redirectTo: '/'});
     }
 
