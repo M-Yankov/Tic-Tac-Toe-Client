@@ -2,7 +2,7 @@
 (function () {
     'use strict';
 
-    angular.module('tttGame.directives', [])
+    angular.module('tttGame.directives')
         .directive('compareTo', function () {
             return {
                 require: "ngModel",
