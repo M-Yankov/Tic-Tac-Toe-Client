@@ -7,6 +7,7 @@ div#container {
     margin-left: auto;
     padding-left: 15px;
     padding-right: 15px;
+    font-size: 16px;
 }
 
 .jumbotron {
@@ -82,4 +83,8 @@ label.red-X-symbol-background {
 
 label.btn.btn-default.tile-hove-warning:hover {
     box-shadow: #ff8800 0 0 2px 2px inset;
+}
+
+table a:not(.btn), .table a:not(.btn) {
+    color: #2A9FD6;
 }

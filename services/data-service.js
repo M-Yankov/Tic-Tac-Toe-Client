@@ -2,8 +2,14 @@
 (function () {
     'use strict';
 
+    /**
+     *  Process request to the main server
+     * @param $http
+     * @param $q
+     * @param domain
+     * @returns {{getRequest: Function, postRequest: Function}}
+     */
     function dataService($http, $q, domain) {
-
 
         /**
          *
@@ -36,7 +42,7 @@
 
             $http.post(domain + url, body)
                 .then(function (response) {
-                   deferred.resolve(response.data);
+                    deferred.resolve(response.data);
                 }, function (error) {
                     deferred.reject(error);
                 });
