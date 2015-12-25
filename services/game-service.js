@@ -2,6 +2,7 @@
 (function () {
     'use strict';
 
+    // TODO refactor this later
     function GameService(dataService, $q) {
         var cachedGames;
 
@@ -82,7 +83,6 @@
                     }, function (error) {
                         deferred.reject(error);
                     });
-
             }
 
             return deferred.promise;
