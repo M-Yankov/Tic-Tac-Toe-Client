@@ -88,3 +88,7 @@ label.btn.btn-default.tile-hove-warning:hover {
 table a:not(.btn), .table a:not(.btn) {
     color: #2A9FD6;
 }
+
+div.statistics span.badge {
+    font-size: 20px;
+}
