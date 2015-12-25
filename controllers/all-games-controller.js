@@ -3,16 +3,14 @@
     'use strict';
 
     function AllGamesController(gameManager, notifier) {
-
         var vm = this;
-
 
         getAllGames();
 
         function getAllGames() {
             gameManager.allGames()
-                .then(function (response) {
-                    vm.allGames = response;
+                .then(function (games) {
+                    vm.allGames = games;
                 }, function (errorResponse) {
                     var errors = {};
                     notifier.error(errorResponse.data.Message, 'Error');

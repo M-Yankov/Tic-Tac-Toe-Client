@@ -21,10 +21,10 @@
 
         vm.createGame = function () {
             gameManager.createGame()
-                .then(function (response) {
+                .then(function (gameId) {
                     notifier.success('Game created', 'Success!');
-                    console.log(response);
-                    $location.path('/game/' + response);
+                    console.log(gameId);
+                    $location.path('/game/' + gameId);
                 }, function (errResponse) {
                     notifier.error('Cannot create game', 'Error');
                     console.log(errResponse);
@@ -33,11 +33,11 @@
 
         vm.joinGame = function () {
             gameManager.joinGame()
-                .then(function (successEnter) {
+                .then(function (gameId) {
                     notifier.success('You just joined in the game!', 'Success!');
-                    $location.path('/game/' + successEnter);
+                    $location.path('/game/' + gameId);
 
-                }, function (error) {
+                }, function () {
                     notifier.error('Currently there are no games', 'Games not found!');
                 });
         };
@@ -60,7 +60,7 @@
 
             tile.gameId = vm.gameInfo.Id;
             gameManager.play(tile)
-                .then(function (response) {
+                .then(function () {
                     /// Success play
                     GameDetails();
 
@@ -121,11 +121,11 @@
             }
 
             gameManager.gameDetails(idOfTheGame)
-                .then(function (response) {
+                .then(function (gameDetails) {
 
-                    stopIntervalIfBoardChanged(response);
+                    stopIntervalIfBoardChanged(gameDetails);
 
-                    vm.gameInfo = response;
+                    vm.gameInfo = gameDetails;
 
                     if (vm.gameInfo.State >= 3) {
                         $interval.cancel(promiseToDestroy);

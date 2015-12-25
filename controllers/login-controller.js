@@ -20,7 +20,6 @@
                         }
 
                         vm.hasError = true;
-
                     });
             } else {
                 notifier.error('Check requirements', 'Invalid form');

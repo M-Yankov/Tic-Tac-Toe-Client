@@ -9,7 +9,7 @@
             vm.hasError = false;
             if (form.$valid) {
                 auth.userRegistration(user)
-                    .then(function (response) {
+                    .then(function () {
                         notifier.success('Now you must login!', 'Success registration!');
                         $location.path('/login');
                     }, function (errorResponse) {

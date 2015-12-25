@@ -10,9 +10,9 @@
 
         function getFullDetails() {
             auth.userFullInformation()
-                .then(function (response) {
-                    vm.fullInformation = response;
-                }, function (errResponse) {
+                .then(function (userInfo) {
+                    vm.fullInformation = userInfo;
+                }, function () {
                     notifier.error('Cannot access data','Error');
                 });
         }

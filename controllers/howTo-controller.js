@@ -3,7 +3,6 @@
     'use strict';
 
     function HowToPlayController() {
-        var vm = this;
     }
 
     angular.module('tttGame.controllers')
