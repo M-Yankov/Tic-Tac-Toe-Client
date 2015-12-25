@@ -3,9 +3,9 @@
         <div  class="list-group-item" ng-repeat="game in vm.allGames">
 
             <p class="lead"><strong>{{ game.FirstPlayerName }} : {{ game.SecondPlayerName }}</strong></p>
-            <p class="text-center"><strong>FirstPlayer</strong>:  <span class="text-danger"> {{ game.FirstPlayerName }} </span></p>
-            <p class="text-center"><strong>SecondPlayer</strong>:  <span class="text-success"> {{ game.SecondPlayerName }} </span></p>
-            <p class="text-center"><strong>GameState</strong>:  <span class="text-warning"> {{ game.State | gameStateFilter }} </span></p>
+            <p class="text-center"><strong>First player</strong>:  <span class="text-danger"> {{ game.FirstPlayerName }} </span></p>
+            <p class="text-center"><strong>Second player</strong>:  <span class="text-success"> {{ game.SecondPlayerName }} </span></p>
+            <p class="text-center"><strong>Game state</strong>:  <span class="text-warning"> {{ game.State | gameStateFilter }} </span></p>
 
             <!--<p>{{hm.globallySetCurrentUser.Email || 'Nema nikoi'}}</p>-->
             <div class="text-center" ttt-board  info="game" ></div>
