@@ -7,6 +7,8 @@
 
         var promiseToDestroy;
         vm.tile = {};
+        vm.isGameCreating = false;
+        vm.isInGameJoiningProcess = false;
 
         if ($routeParams.id) {
             GameDetails();
@@ -20,24 +22,28 @@
         });
 
         vm.createGame = function () {
+            vm.isGameCreating = true;
             gameManager.createGame()
                 .then(function (gameId) {
                     notifier.success('Game created', 'Success!');
-                    console.log(gameId);
+                    vm.isGameCreating = false;
                     $location.path('/game/' + gameId);
                 }, function (errResponse) {
                     notifier.error('Cannot create game', 'Error');
                     console.log(errResponse);
+                    vm.isGameCreating = false;
                 });
         };
 
         vm.joinGame = function () {
+            vm.isInGameJoiningProcess = true;
             gameManager.joinGame()
                 .then(function (gameId) {
                     notifier.success('You just joined in the game!', 'Success!');
+                    vm.isInGameJoiningProcess = false;
                     $location.path('/game/' + gameId);
-
                 }, function () {
+                    vm.isInGameJoiningProcess = false;
                     notifier.error('Currently there are no games', 'Games not found!');
                 });
         };
