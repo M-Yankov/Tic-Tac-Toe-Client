@@ -75,6 +75,11 @@
                 controller: 'AboutController',
                 controllerAs: CONTROLLER_AS
             })
+            .when('/how-to', {
+                templateUrl: 'templates/howTo-play-template.html',
+                controller: 'HowToController',
+                controllerAs: CONTROLLER_AS
+            })
             .otherwise({redirectTo: '/'});
     }
 
