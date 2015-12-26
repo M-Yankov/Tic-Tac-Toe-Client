@@ -29,7 +29,8 @@
                 <div class="form-group">
                     <div class="col-md-5 col-md-offset-2">
                         <a href="/" title="Returns to home" class="btn btn-default">Cancel</a>
-                        <button ng-click="vm.logUser(user, regForm)"
+                        <button ng-hide="vm.isProcessing"
+                                ng-click="vm.logUser(user, regForm)"
                                 ng-disabled="regForm.$invalid"
                                 class="btn btn-primary">Login
                         </button>

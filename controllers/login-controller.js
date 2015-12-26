@@ -4,9 +4,11 @@
     function LoginController($location, auth, notifier) {
 
         var vm = this;
+        vm.isProcessing = false;
 
         vm.logUser = function (user, form) {
             vm.hasError = false;
+            vm.isProcessing = true;
             if (form.$valid) {
                 auth.login(user)
                     .then(function (response) {
@@ -20,10 +22,12 @@
                         }
 
                         vm.hasError = true;
+                        vm.isProcessing = false;
                     });
             } else {
                 notifier.error('Check requirements', 'Invalid form');
                 vm.hasError = true;
+                vm.isProcessing = false;
             }
         };
     }

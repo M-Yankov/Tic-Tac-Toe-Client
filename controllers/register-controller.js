@@ -4,18 +4,22 @@
 
     function RegisterController($location, auth, notifier) {
         var vm = this;
+        vm.isProcessing = false;
 
         vm.makeRegistration = function (user, form) {
             vm.hasError = false;
             if (form.$valid) {
+                vm.isProcessing = true;
                 auth.userRegistration(user)
                     .then(function () {
                         notifier.success('Now you must login!', 'Success registration!');
+                        vm.isProcessing = false;
                         $location.path('/login');
                     }, function (errorResponse) {
                         console.log('something is not good. check below:');
                         console.log(errorResponse);
                         vm.hasError = true;
+                        vm.isProcessing = false;
                         if(errorResponse.data && errorResponse.data.ModelState && errorResponse.data.ModelState[""])
                         {
                             var errors = errorResponse.data.ModelState[""];
