@@ -52,13 +52,13 @@
                 controller: 'AllGamesController',
                 controllerAs: CONTROLLER_AS
             })
-            .when('/games/profile/usergames', {
+            .when('/profile/games', {
                 templateUrl: 'templates/games-default-template.html',
                 controller: 'UsersGamesController',
                 controllerAs: CONTROLLER_AS,
                 resolve: routeResolvers.authenticationRequired
             })
-            .when('/games/profile', {
+            .when('/profile', {
                 templateUrl: 'templates/user-profile-template.html',
                 controller: 'UserDetailsController',
                 controllerAs: CONTROLLER_AS,
