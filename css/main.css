@@ -92,3 +92,7 @@ table a:not(.btn), .table a:not(.btn) {
 div.statistics span.badge {
     font-size: 20px;
 }
+
+svg {
+    padding: 5px;
+}

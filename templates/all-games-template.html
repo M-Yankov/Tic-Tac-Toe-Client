@@ -7,8 +7,9 @@
             <p class="text-center"><strong>Second player</strong>:  <span class="text-success"> {{ game.SecondPlayerName }} </span></p>
             <p class="text-center"><strong>Game state</strong>:  <span class="text-warning"> {{ game.State | gameStateFilter }} </span></p>
 
-            <!--<p>{{hm.globallySetCurrentUser.Email || 'Nema nikoi'}}</p>-->
-            <div class="text-center" ttt-board  info="game" ></div>
+            <div class="text-center">
+                <svg svg-board  board="game.Board" width="170" height="200"></svg>
+            </div>
 
             <br/>
             <br/>
