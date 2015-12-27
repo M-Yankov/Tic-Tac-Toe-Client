@@ -13,9 +13,9 @@
                 case 2:
                     return "Second player turn.";
                 case 3:
-                    return "Game was won by first player";
+                    return "First player won";
                 case 4:
-                    return "Game was won by second player";
+                    return "Second player won";
                 case 5:
                     return "Draw. Deal with it.";
                 default:
