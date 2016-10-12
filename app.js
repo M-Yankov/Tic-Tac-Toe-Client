@@ -83,7 +83,16 @@
             .otherwise({redirectTo: '/'});
     }
 
-    function run($http, $cookies, $rootScope, $location, auth, notifier) {
+    function run($http, $cookies, $rootScope, $location, auth, notifier, dataService) {
+
+        // wake up server. solves some problems when register or login
+        dataService.getRequest('api/')
+            .then(function (responseData) {
+                console.log(responseData);
+            }, function (error) {
+                console.error(error);
+            });
+
         $rootScope.$on('$routeChangeError', function (ev, current, previous, rejection) {
             if (rejection === 'not authorized') {
                 notifier.warning('First login!', 'NOT AUTHORIZED!');
@@ -99,9 +108,9 @@
 
     angular.module('tttGame', ['ui.bootstrap', 'ngRoute', 'ngResource', 'ngCookies', 'ngMessages', 'tttGame.directives', 'tttGame.controllers', 'tttGame.services', 'tttGame.filters'])
         .config(['$routeProvider', '$locationProvider', configuration])
-        .run(['$http', '$cookies', '$rootScope', '$location', 'auth', 'notifier', run])
-        .value('toastr', toastr)
-        .constant('domain', 'https://tic-tac-toeserver.apphb.com/');
+        .constant('domain', 'https://tic-tac-toeserver.apphb.com/')// 'https://tic-tac-toeserver.apphb.com/')
+        .run(['$http', '$cookies', '$rootScope', '$location', 'auth', 'notifier', 'dataService', run])
+        .value('toastr', toastr);
 
     angular.module('tttGame.directives', []);
 
