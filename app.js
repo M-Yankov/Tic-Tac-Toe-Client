@@ -23,6 +23,14 @@
 
         $routeProvider
             .when('/', {
+                templateUrl: 'templates/construction.html'
+            })
+            .otherwise( { redirectTo: '/'});
+
+        return;
+
+        $routeProvider
+            .when('/', {
                 templateUrl: 'templates/home-template.html'
             })
             .when('/login', {
@@ -108,7 +116,7 @@
 
     angular.module('tttGame', ['ui.bootstrap', 'ngRoute', 'ngResource', 'ngCookies', 'ngMessages', 'tttGame.directives', 'tttGame.controllers', 'tttGame.services', 'tttGame.filters'])
         .config(['$routeProvider', '$locationProvider', configuration])
-        .constant('domain', 'https://tic-tac-toeserver.apphb.com/')// 'https://tic-tac-toeserver.apphb.com/')
+        .constant('domain', 'http://localhost/tttGame/')// 'https://tic-tac-toeserver.apphb.com/')
         .run(['$http', '$cookies', '$rootScope', '$location', 'auth', 'notifier', 'dataService', run])
         .value('toastr', toastr);
 
