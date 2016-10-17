@@ -21,13 +21,13 @@
             }
         };
 
-        $routeProvider
+        /*$routeProvider
             .when('/', {
                 templateUrl: 'templates/construction.html'
             })
             .otherwise( { redirectTo: '/'});
 
-        return;
+        return;*/
 
         $routeProvider
             .when('/', {

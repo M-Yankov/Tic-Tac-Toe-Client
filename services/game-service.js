@@ -3,7 +3,6 @@
     'use strict';
 
     function GameService(dataService, $q) {
-        var cachedGames;
 
         function createGame() {
             return dataService.postRequest('api/games/create');
@@ -23,18 +22,14 @@
 
         function allGames() {
             var deferred = $q.defer();
-            if (!!cachedGames) {
-                deferred.resolve(cachedGames);
-                return deferred.promise;
-            } else {
-                dataService.getRequest('api/games/all')
-                    .then(function (allGames) {
-                        cachedGames = allGames;
-                        deferred.resolve(allGames);
-                    }, function (error) {
-                        deferred.reject(error);
-                    });
-            }
+
+            dataService.getRequest('api/games/all')
+                .then(function (allGames) {
+                    deferred.resolve(allGames);
+                }, function (error) {
+                    deferred.reject(error);
+                });
+
 
             return deferred.promise;
         }

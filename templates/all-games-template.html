@@ -2,15 +2,21 @@
     <div ng-show="vm.allGames && vm.allGames.length > 0">
         <div class="col-md-2 well" ng-repeat="game in vm.allGames">
 
-            <p class="lead"><strong>{{ game.FirstPlayerName }} : {{ game.SecondPlayerName }}</strong></p>
+            <p class="lead text-center ellipsis"><strong>{{ game.Name }}</strong></p>
 
-            <p class="text-center"><strong>First player</strong>: <span
-                    class="text-danger"> {{ game.FirstPlayerName }} </span></p>
-
-            <p class="text-center"><strong>Second player</strong>: <span class="text-success"> {{ game.SecondPlayerName }} </span>
+            <p class="text-center ellipsis">
+                <strong>First player</strong>:
+                <span class="text-danger"> {{ game.FirstPlayerName }} </span>
             </p>
 
-            <p class="text-center"><strong>Game state</strong>: <span class="text-warning"> {{ game.State | gameStateFilter }} </span>
+            <p class="text-center ellipsis">
+                <strong>Second player</strong>:
+                <span class="text-success"> {{ game.SecondPlayerName }} </span>
+            </p>
+
+            <p class="text-center">
+                <strong>Game state</strong>:
+                <span class="text-warning"> {{ game.State | gameStateFilter }} </span>
             </p>
 
             <div class="text-center">
@@ -39,24 +45,24 @@
 <div ng-hide="vm.isLoaded" class="row">
     <div class="col-md-4 col-md-offset-4">
         <div class="progress active progress-striped" style="width: 400px;">
-            <div class="progress-bar progress-bar-info" style="width: 20%">
+            <div class="progress-bar progress-bar-info width-20">
                 <div>Connecting</div>
             </div>
-            <div class="progress-bar" style="width: 20%">
+            <div class="progress-bar width-20">
                 <div>to</div>
             </div>
-            <div class="progress-bar progress-bar-success" style="width: 20%">
+            <div class="progress-bar progress-bar-success width-20">
                 <div>the</div>
             </div>
 
-            <div class="progress-bar progress-bar-warning" style="width: 20%">
+            <div class="progress-bar progress-bar-warning width-20">
                 <div>dark</div>
             </div>
-            <div class="progress-bar progress-bar-danger" style="width: 20%">
+            <div class="progress-bar progress-bar-danger width-20">
                 <div>side.</div>
             </div>
         </div>
-            It's slow I know, but cannot do anything right now.
+        It's slow I know, but cannot do anything right now.
         <br/>
         If an error occur. Try refresh the page.
     </div>
