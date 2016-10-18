@@ -63,13 +63,31 @@
             <div class="col-md-6">
 
                 <form id="form" class="createGame">
-                    <header>MINIMALISTIC FORM</header>
+                    <header>CREATE NEW GAME</header>
 
                     <input id="name" type="text" class="minimalistic" placeholder="NAME">
                     <input id="email" type="text" class="minimalistic" placeholder="E-MAIL">
-                    <textarea id="message" type="text" class="minimalistic" placeholder="MESSAGE"></textarea>
+                    <div class="minimalistic v-center">
+                        <div class="col-md-4 text-center">Your symbol:</div>
 
-                    <button class="minimalistic">GO</button>
+
+                        <div class="col-md-4 text-center">
+                            <label for="x-symbol">
+                                <img src="../img/reg_X_symbol_128.png" alt="x" width="30" />
+                                <input type="radio" id="x-symbol" name="symbol"  >
+                                <div class="check"></div>
+                            </label>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <label for="o-symbol">
+                                <img src="../img/greenCircle_128.png" alt="o" width="30" />
+                                <input type="radio" id="o-symbol" name="symbol"  >
+                                <div class="check"></div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button class="minimalistic">CREATE</button>
                 </form>
 
 
