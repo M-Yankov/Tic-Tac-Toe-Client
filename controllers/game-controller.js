@@ -21,6 +21,13 @@
             console.log('Destroyed');
         });
 
+        vm.change = function(isChecked, game){
+            if (!isChecked) {
+                console.log(game);
+            	game.password = '';
+            }
+        };
+
         vm.createGame = function () {
             vm.isGameCreating = true;
             gameManager.createGame()

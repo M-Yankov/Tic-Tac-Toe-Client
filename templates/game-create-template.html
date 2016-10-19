@@ -62,23 +62,28 @@
 
             <div class="col-md-6">
 
-                <form id="form" class="createGame">
+                <form id="form" class="createGame" name="createGame">
                     <header>CREATE NEW GAME</header>
 
-                    <input id="name" type="text" class="minimalistic text-center" placeholder="NAME">
+                    <input id="name" type="text" class="minimalistic text-center"
+                           ng-model="game.name"
+                           ng-required="required"
+                           ng-maxlength="100"
+                           ng-minlength="3"
+                           placeholder="NAME">
                     <div class="minimalistic v-center">
                         <div class="col-md-4 text-center">Your symbol:</div>
                         <div class="col-md-4 text-center">
                             <label for="x-symbol">
                                 <img src="../img/reg_X_symbol_128.png" alt="x" width="30" />
-                                <input type="radio" id="x-symbol" name="symbol"  >
+                                <input type="radio" name="symbol" value="X" required="required" ng-model="game.symbol"  id="x-symbol" />
                                 <div class="check"></div>
                             </label>
                         </div>
                         <div class="col-md-4 text-center">
                             <label for="o-symbol">
                                 <img src="../img/greenCircle_128.png" alt="o" width="30" />
-                                <input type="radio" id="o-symbol" name="symbol"  >
+                                <input type="radio" id="o-symbol" value="O" name="symbol" required="required" ng-model="game.symbol" />
                                 <div class="check"></div>
                             </label>
                         </div>
@@ -87,42 +92,26 @@
                     <div class="minimalistic">
                         <div class="col-md-6 text-right v-center">
                             <label for="private-game">Private
-                                <input type="checkbox" id="private-game" />
+                                <input type="checkbox" id="private-game" ng-change="vm.change(game.isPrivate, game)" name="isPivate" ng-model="game.isPrivate" />
                                 <div class="check-box text-center">
                                     <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                                 </div>
                             </label>
                         </div>
                         <div class="col-md-6">
-                            <input id="game-password" class="minimalistic inner-input" type="password" />
+                            <input id="game-password" placeholder="PASSWORD" name="password" class="minimalistic inner-input" type="password"
+                            ng-model="game.password"
+                            ng-disabled="!game.isPrivate"
+                            ng-required="game.isPrivate" />
                         </div>
                     </div>
-                    <button type="button" class="minimalistic">CREATE</button>
+                    <button type="button" ng-disabled="!createGame.$valid" class="minimalistic">CREATE</button>
                 </form>
+                    {{game}}
+                <br>
+                isFormValid ? => {{createGame.$valid}}
 
-
-
-
-                <!--<form novalidate class="createGame" name="createGame">
-                    <fieldset>
-                        <legend class="text-center">
-                            Details
-                        </legend>
-                        <div class="form-group">
-                            <div class="col-md-2">
-                                <label for="gameName" class="control-label">Name</label>
-                            </div>
-                            <div class="col-md-5">
-                                <input class="form-control" id="gameName" name="Name" ng-minlength="3" ng-maxlength="100"
-                                       placeholder="Name" required="required" ng-model="game.name" type="text"/>
-                            <div ng-show="createGame.Name.$dirty || createGame.$submitted" ng-messages="createGame.Name.$error"  role="alert">
-                                <div> Req*</div>
-                            </div>
-                            </div>
-                        </div>
-
-                    </fieldset>
-                </form>-->
+                <!-- https://docs.angularjs.org/api/ng/directive/form -->
             </div>
         </div>
     </div>
@@ -141,3 +130,12 @@
     </div>
     <hr/>
 </div>
+
+<script>
+
+    function myFunc(a,b,c) {
+        console.log(a);
+        console.log(b);
+        console.log(c);
+    }
+</script>

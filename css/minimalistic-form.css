@@ -80,10 +80,16 @@ input.minimalistic {
 }
 
 button.minimalistic {
-
     padding: 0;
     cursor: pointer;
     border: solid 1px #6e2caf;
+}
+
+button.minimalistic:disabled,
+button.minimalistic:disabled:hover {
+    cursor: default;
+    background: transparent;
+    color: gray;
 }
 
 .minimalistic .inner-input,
@@ -186,4 +192,8 @@ button.minimalistic {
 .minimalistic:hover input[type=radio]:checked ~ label,
 .minimalistic:hover input[type=checkbox]:checked ~ label {
     color: #fff;
+}
+
+input.minimalistic.ng-invalid {
+    border-bottom: 1px solid red;
 }
