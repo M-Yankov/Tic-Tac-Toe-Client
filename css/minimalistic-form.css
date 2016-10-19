@@ -36,6 +36,10 @@ body form.createGame {
     color: #9933cc;
 }
 
+body form.createGame img {
+    vertical-align: inherit;
+}
+
 form.createGame header {
     position: relative;
     font-size: 2.3em;
@@ -54,10 +58,11 @@ form.createGame header {
     outline: none;
     height: 50px;
     padding: 0 15px 0 15px;
+    border-bottom: none;
 }
 
-.minimalistic.v-center {
-    padding: 2% 0 0 0;
+.v-center {
+    padding: 1% 0 0 0;
 }
 
 input.minimalistic {
@@ -77,30 +82,38 @@ input.minimalistic {
 button.minimalistic {
 
     padding: 0;
-    margin: -5px 0 0 0;
     cursor: pointer;
     border: solid 1px #6e2caf;
+}
+
+.minimalistic .inner-input,
+.minimalistic:hover .inner-input {
     border-top: none;
+    border-bottom: none;
+    border-right: none;
+    height: 49px;
 }
 
 /* radio buttons */
 
-.minimalistic input[type=radio] {
+.minimalistic input[type=radio],.minimalistic input[type=checkbox] {
     position: absolute;
     visibility: hidden;
 }
 
 .minimalistic label {
     cursor: pointer;
+    font-weight: normal;
 }
 
-.minimalistic:hover label {
+.minimalistic:hover label,
+.minimalistic:hover input.inner-input {
     color: #FFFFFF;
 }
 
-.minimalistic .check {
+.minimalistic .check, .minimalistic .check-box {
     display: inline-block;
-    position: absolute;
+    position: relative;
     border: 2px solid #6e2caf;
     border-radius: 100%;
     height: 30px;
@@ -111,8 +124,13 @@ button.minimalistic {
     top: 0;
     margin-left: 20px;
 }
+.minimalistic div.check-box {
+    border-radius: 0;
+    margin: 0;
+}
 
-.minimalistic:hover .check {
+.minimalistic:hover .check,
+.minimalistic:hover div.check-box {
     border: 2px solid #fff;
 }
 
@@ -130,26 +148,42 @@ button.minimalistic {
     -webkit-transition: background 0.25s linear;
 }
 
-.minimalistic input[type=radio]:checked ~ .check {
+.minimalistic input[type=checkbox]:checked ~.check-box span.glyphicon.glyphicon-ok {
+    visibility: visible;
+    vertical-align: middle;
+}
+
+.minimalistic .check-box span.glyphicon.glyphicon-ok {
+    visibility: hidden;
+    vertical-align: middle;
+}
+
+.minimalistic input[type=radio]:checked ~ .check,
+.minimalistic input[type=checkbox]:checked ~ .check-box {
     border: 2px solid #6e2caf;
 }
 
-.minimalistic input[type=radio]:checked ~ .check::before {
+.minimalistic input[type=radio]:checked ~ .check::before,
+.minimalistic input[type=checkbox]:checked ~ .check-box::before {
     background: #6e2caf;
 }
 
-.minimalistic input[type=radio]:checked ~ label {
+.minimalistic input[type=radio]:checked ~ label,
+.minimalistic input[type=checkbox]:checked ~ label {
     color: #6e2caf;
 }
 
-.minimalistic:hover input[type=radio]:checked ~ .check {
+.minimalistic:hover input[type=radio]:checked ~ .check,
+.minimalistic:hover input[type=checkbox]:checked ~ .check-box {
     border: 2px solid #fff;
 }
 
-.minimalistic:hover input[type=radio]:checked ~ .check::before {
+.minimalistic:hover input[type=radio]:checked ~ .check::before,
+.minimalistic:hover input[type=checkbox]:checked ~ .check::before {
     background: #fff;
 }
 
-.minimalistic:hover input[type=radio]:checked ~ label {
+.minimalistic:hover input[type=radio]:checked ~ label,
+.minimalistic:hover input[type=checkbox]:checked ~ label {
     color: #fff;
 }

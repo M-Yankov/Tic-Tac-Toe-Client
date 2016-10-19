@@ -65,12 +65,9 @@
                 <form id="form" class="createGame">
                     <header>CREATE NEW GAME</header>
 
-                    <input id="name" type="text" class="minimalistic" placeholder="NAME">
-                    <input id="email" type="text" class="minimalistic" placeholder="E-MAIL">
+                    <input id="name" type="text" class="minimalistic text-center" placeholder="NAME">
                     <div class="minimalistic v-center">
                         <div class="col-md-4 text-center">Your symbol:</div>
-
-
                         <div class="col-md-4 text-center">
                             <label for="x-symbol">
                                 <img src="../img/reg_X_symbol_128.png" alt="x" width="30" />
@@ -87,7 +84,20 @@
                         </div>
                     </div>
 
-                    <button class="minimalistic">CREATE</button>
+                    <div class="minimalistic">
+                        <div class="col-md-6 text-right v-center">
+                            <label for="private-game">Private
+                                <input type="checkbox" id="private-game" />
+                                <div class="check-box text-center">
+                                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <input id="game-password" class="minimalistic inner-input" type="password" />
+                        </div>
+                    </div>
+                    <button type="button" class="minimalistic">CREATE</button>
                 </form>
 
 
