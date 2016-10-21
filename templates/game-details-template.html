@@ -1,7 +1,7 @@
 <div class="panel panel-primary ">
     <div class="panel-heading">
         <h3 class="panel-title">Tic-Tac-Toe Game:
-            <div class="row text-center"> {{vm.gameInfo.FirstPlayerName}} - {{vm.gameInfo.SecondPlayerName}}</div>
+            <div class="row text-center"> {{vm.gameInfo.Name}}</div>
         </h3>
     </div>
     <div class="panel-body " style="padding: 30px;">
@@ -9,9 +9,22 @@
         <div class="row">
             <div class="col-lg-4">
                 <div class="bs-component">
-                    <p class="lead"><strong>First player</strong>:  <span class="text-danger"> {{ vm.gameInfo.FirstPlayerName }} </span></p>
-                    <p class="lead"><strong>Second player</strong>:  <span class="text-success"> {{ vm.gameInfo.SecondPlayerName }} </span></p>
-                    <p class="lead"><strong>Game state</strong>:  <span class="text-warning"> {{ vm.gameInfo.State | gameStateFilter }} </span></p>
+                    <p class="lead"><strong>First player</strong>:  <span class="{{ vm.gameInfo.FirstPlayerSymbol == 'X' ?  'text-danger' : 'text-success' }}"> {{ vm.gameInfo.FirstPlayerName }} </span></p>
+                    <p class="lead"><strong>Second player</strong>:  <span class="{{ vm.gameInfo.SecondPlayerSymbol == 'X' ?  'text-danger' : 'text-success' }}"> {{ vm.gameInfo.SecondPlayerName }} </span></p>
+                    <p class="lead">
+                        <strong>Game state</strong>:
+                        <span class="text-warning">
+                            {{
+                                {
+                                   state : vm.gameInfo.State,
+                                   firstPlayerSymbol : vm.gameInfo.FirstPlayerSymbol,
+                                   secondPlayerSymbol : vm.gameInfo.SecondPlayerSymbol
+                                }
+                            | gameStateFilter
+                            }}
+                        </span>
+                    </p>
+
                     <div style="display: none;" id="source-button" class="btn btn-primary btn-xs">&lt; &gt;</div>
                 </div>
             </div>

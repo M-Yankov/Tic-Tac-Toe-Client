@@ -4,12 +4,13 @@
 
     function GameService(dataService, $q) {
 
-        function createGame() {
-            return dataService.postRequest('api/games/create');
+        function createGame(game) {
+            return dataService.postRequest('api/games/create', game);
         }
 
-        function joinGame() {
-            return dataService.postRequest('api/games/join');
+        function joinGame(id, password) {
+            password = password || '';
+            return dataService.postRequest('api/games/join?id=' + id, { 'password' : password});
         }
 
         function details(id) {

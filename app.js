@@ -57,7 +57,7 @@
             })
             .when('/games/all', {
                 templateUrl: 'templates/games-default-template.html',
-                controller: 'AllGamesController',
+                controller: 'GameController',
                 controllerAs: CONTROLLER_AS
             })
             .when('/profile/games', {

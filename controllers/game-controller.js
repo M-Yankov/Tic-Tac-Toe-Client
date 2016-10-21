@@ -9,6 +9,34 @@
         vm.tile = {};
         vm.isGameCreating = false;
         vm.isInGameJoiningProcess = false;
+        vm.isLoaded = false;
+
+        getAllGames();
+
+        function getAllGames() {
+            gameManager.allGames()
+                .then(function (games) {
+                    vm.allGames = games;
+                    vm.isLoaded = true;
+                }, function (errorResponse) {
+                    console.error(errorResponse);
+                    var errors = {};
+                    notifier.error(errorResponse.data.Message, 'Error');
+
+                    vm.isLoaded = true;
+                    if (errorResponse.data && errorResponse.data.ModelState && errorResponse.data.ModelState[""]) {
+                        errors = errorResponse.data.ModelState[""];
+
+                        for (var ind in errors) {
+                            if (errors.hasOwnProperty(ind)) {
+                                notifier.error(errors[ind], errorResponse.statusText);
+                            }
+                        }
+                    }
+
+                });
+        }
+
 
         if ($routeParams.id) {
             GameDetails();
@@ -28,23 +56,23 @@
             }
         };
 
-        vm.createGame = function () {
+        vm.createGame = function (game) {
             vm.isGameCreating = true;
-            gameManager.createGame()
+            gameManager.createGame(game)
                 .then(function (gameId) {
                     notifier.success('Game created', 'Success!');
                     vm.isGameCreating = false;
                     $location.path('/game/' + gameId);
                 }, function (errResponse) {
-                    notifier.error('Cannot create game', 'Error');
+                    notifier.error(errResponse.data.Message || 'Cannot create game', 'Error');
                     console.log(errResponse);
                     vm.isGameCreating = false;
                 });
         };
 
-        vm.joinGame = function () {
+        vm.joinGame = function (id, password) {
             vm.isInGameJoiningProcess = true;
-            gameManager.joinGame()
+            gameManager.joinGame(id, password)
                 .then(function (gameId) {
                     notifier.success('You just joined in the game!', 'Success!');
                     vm.isInGameJoiningProcess = false;

@@ -9,6 +9,10 @@ div#container {
     padding-right: 15px;
 }
 
+div#container .panel .panel-body .well {
+    min-height: 425px;
+}
+
 .jumbotron {
     border-radius: 5px;
     padding: 48px 60px;

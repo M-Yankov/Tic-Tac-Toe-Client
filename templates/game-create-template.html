@@ -76,14 +76,14 @@
                         <div class="col-md-4 text-center">
                             <label for="x-symbol">
                                 <img src="../img/reg_X_symbol_128.png" alt="x" width="30" />
-                                <input type="radio" name="symbol" value="X" required="required" ng-model="game.symbol"  id="x-symbol" />
+                                <input type="radio" id="x-symbol" value="X" name="symbol" required="required" ng-model="game.startChar" />
                                 <div class="check"></div>
                             </label>
                         </div>
                         <div class="col-md-4 text-center">
                             <label for="o-symbol">
                                 <img src="../img/greenCircle_128.png" alt="o" width="30" />
-                                <input type="radio" id="o-symbol" value="O" name="symbol" required="required" ng-model="game.symbol" />
+                                <input type="radio" id="o-symbol" value="O" name="symbol" required="required" ng-model="game.startChar" />
                                 <div class="check"></div>
                             </label>
                         </div>
@@ -105,7 +105,7 @@
                             ng-required="game.isPrivate" />
                         </div>
                     </div>
-                    <button type="button" ng-disabled="!createGame.$valid" class="minimalistic">CREATE</button>
+                    <button type="button" ng-disabled="!createGame.$valid" ng-click="vm.createGame(game)" class="minimalistic">CREATE</button>
                 </form>
                     {{game}}
                 <br>
