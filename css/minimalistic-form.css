@@ -7,6 +7,13 @@ input.minimalistic[-ms-placeholder] {
     color: #9933cc;
 }
 
+input.orange.minimalistic::-moz-placeholder,
+input.orange.minimalistic[placeholder],
+input.orange.minimalistic::-webkit-input-placeholder,
+input.orange.minimalistic[-ms-placeholder] {
+    color:#f05800;;
+}
+
 input.minimalistic:focus::-webkit-input-placeholder,
 input.minimalistic:focus::-moz-placeholder,
 input.minimalistic:focus[placeholder],
@@ -61,6 +68,11 @@ form.createGame header {
     border-bottom: none;
 }
 
+.minimalistic.orange {
+    color: #ff8800;
+    border: 1px solid #f05800;
+}
+
 .v-center {
     padding: 1% 0 0 0;
 }
@@ -79,10 +91,18 @@ input.minimalistic {
     color: #fff;
 }
 
+.minimalistic.orange:hover {
+    background: #ff8800;
+}
+
 button.minimalistic {
     padding: 0;
     cursor: pointer;
     border: solid 1px #6e2caf;
+}
+
+button.minimalistic.orange {
+    border: 1px solid #ff8800;
 }
 
 button.minimalistic:disabled,

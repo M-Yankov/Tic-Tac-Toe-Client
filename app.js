@@ -49,7 +49,7 @@
                 controllerAs: CONTROLLER_AS,
                 resolve: routeResolvers.authenticationRequired
             })
-            .when('/game/join', {
+            .when('/game/join/:id', {
                 templateUrl: 'templates/game-join-template.html',
                 controller: 'GameController',
                 controllerAs: CONTROLLER_AS,

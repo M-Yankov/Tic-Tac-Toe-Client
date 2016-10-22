@@ -13,8 +13,9 @@
             return dataService.postRequest('api/games/join?id=' + id, { 'password' : password});
         }
 
-        function details(id) {
-            return dataService.getRequest('api/games/status?gameId=' + id);
+        function details(id, isForJoin) {
+            var url = 'api/games/status?gameId=' + id + '&isForJoin=' + !!isForJoin;
+            return dataService.getRequest(url);
         }
 
         function play(tileRequest) {

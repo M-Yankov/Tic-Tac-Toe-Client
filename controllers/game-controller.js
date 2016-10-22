@@ -1,8 +1,8 @@
-/* globals angular*/
+/* globals angular, hm*/
 (function () {
     'use strict';
 
-    function GameController($location, $routeParams, $interval, notifier, gameManager, $scope) {
+    function GameController($location, $routeParams, $interval, notifier, gameManager, $scope, identity) {
         var vm = this;
 
         var promiseToDestroy;
@@ -10,6 +10,44 @@
         vm.isGameCreating = false;
         vm.isInGameJoiningProcess = false;
         vm.isLoaded = false;
+        vm.joinGameDetails = {};
+
+        // join route also has id
+        var isJoinUrl = $location.url().includes('join');
+
+        if (isJoinUrl) {
+            gameManager.gameDetails($routeParams.id, true)
+                .then(function (gameDetails) {
+                    identity.getUser()
+                        .then(function (user) {
+
+                            if (!!gameDetails.SecondPlayerName ||
+                                gameDetails.State !== 0 ||
+                                gameDetails.FirstPlayerName === user.Email ) {
+                                notifier.error('Game not available.' , 'An error');
+                                $location.path('/games/all');
+                            }
+
+                            vm.joinGameDetails = gameDetails;
+                        });
+                }, function (error) {
+                    notifier.error(error.data.Message || '', 'Game not found!');
+                    $location.path('/games/all');
+                });
+        }
+
+        if ($routeParams.id && !isJoinUrl) {
+
+            GameDetails();
+            promiseToDestroy = $interval(GameDetails, 3000);
+        }
+
+        $scope.$on('$destroy', function () {
+            // Make sure that the interval is destroyed too
+            $interval.cancel(promiseToDestroy);
+            console.log('Destroyed');
+        });
+
 
         getAllGames();
 
@@ -37,18 +75,6 @@
                 });
         }
 
-
-        if ($routeParams.id) {
-            GameDetails();
-            promiseToDestroy = $interval(GameDetails, 3000);
-        }
-
-        $scope.$on('$destroy', function () {
-            // Make sure that the interval is destroyed too
-            $interval.cancel(promiseToDestroy);
-            console.log('Destroyed');
-        });
-
         vm.change = function(isChecked, game){
             if (!isChecked) {
                 console.log(game);
@@ -65,7 +91,6 @@
                     $location.path('/game/' + gameId);
                 }, function (errResponse) {
                     notifier.error(errResponse.data.Message || 'Cannot create game', 'Error');
-                    console.log(errResponse);
                     vm.isGameCreating = false;
                 });
         };
@@ -77,9 +102,9 @@
                     notifier.success('You just joined in the game!', 'Success!');
                     vm.isInGameJoiningProcess = false;
                     $location.path('/game/' + gameId);
-                }, function () {
+                }, function (error) {
                     vm.isInGameJoiningProcess = false;
-                    notifier.error('Currently there are no games', 'Games not found!');
+                    notifier.error(error.data.Message || '', 'Error!');
                 });
         };
 
@@ -137,7 +162,7 @@
                     return;
                 }
 
-                // if opponent comes stop!
+                // if opponent comes - stop!
                 if (vm.gameInfo.SecondPlayerName !== newGameInfo.SecondPlayerName) {
                     notifier.warning('Opponent just join', 'Info');
                     $interval.cancel(promiseToDestroy);
@@ -181,6 +206,6 @@
     }
 
     angular.module('tttGame.controllers')
-        .controller('GameController', ['$location', '$routeParams', '$interval', 'notifier', 'gameManager', '$scope', GameController]);
+        .controller('GameController', ['$location', '$routeParams', '$interval', 'notifier', 'gameManager', '$scope' , 'identity', GameController]);
 
 }());

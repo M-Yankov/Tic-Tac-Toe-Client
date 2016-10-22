@@ -61,6 +61,7 @@ div[role="alert"].ng-active div[ng-message].ng-scope {
 
 div.btn-group label.btn.btn-default{
     width: 51px;
+    border-radius: 0;
     height: 50px;
     border: 2px solid #2a9fd6;
 }

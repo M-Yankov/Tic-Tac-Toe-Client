@@ -39,7 +39,7 @@
                 <a href="/game/{{game.Id}}"
                    ng-if="!!hm.globallySetCurrentUser && (hm.globallySetCurrentUser.Email == game.FirstPlayerName || hm.globallySetCurrentUser.Email == game.SecondPlayerName)"
                    class="btn btn-primary">Details</a>
-                <a href="#" ng-click="vm.joinGame(game.Id)" ng-if="game.State == 0 && game.FirstPlayerName != hm.globallySetCurrentUser.Email" class="btn btn-warning">Join</a>
+                <a href="#" ng-click="vm.joinGame(game.Id)" ng-if="game.State == 0 && game.FirstPlayerName != hm.globallySetCurrentUser.Email && !!hm.globallySetCurrentUser" class="btn btn-warning">Join</a>
             </div>
         </div>
     </div>

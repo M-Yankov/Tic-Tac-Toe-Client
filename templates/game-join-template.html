@@ -1,21 +1,21 @@
 <div class="row">
     <div class="panel panel-warning ">
         <div class="panel-heading">
-            <h3 class="panel-title">Join a game</h3>
+            <h3 class="panel-title">Join in a private game</h3>
         </div>
-        <div class="panel-body " style="padding: 30px;">
-            <div class="row">You will join in first free game!</div>
-            <div class="row">Good luck!</div>
-        </div>
-        <div ng-hide="vm.isInGameJoiningProcess" class="text-center">
-            <button ng-click="vm.joinGame()" class="btn btn-warning">Join</button>
-        </div>
-        <div ng-show="vm.isInGameJoiningProcess">
-            <div class="col-md-2 col-md-offset-5">
+        <div class="panel-body" style="padding: 30px 35% ;">
 
-                <div class="progress progress-striped active">
-                    <div class="progress-bar text-center progress-bar-warning" style="width: 100%">
-                        <div>Searching...</div>
+            <h4 class="text-center text-warning" >Game Name: {{vm.joinGameDetails.Name}}</h4>
+
+            <input id="game-password" placeholder="PASSWORD" name="password" class="minimalistic orange text-center" type="password"
+                           ng-model="game.password"/>
+            <button type="button" ng-click="vm.joinGame(vm.joinGameDetails.Id, game.password)" ng-disabled="!game.password || vm.isInGameJoiningProcess" class="minimalistic orange">JOIN</button>
+            <div ng-show="vm.isInGameJoiningProcess">
+                <div class="col-md-2 col-md-offset-5">
+                    <div class="progress progress-striped active">
+                        <div class="progress-bar text-center progress-bar-warning" style="width: 100%">
+                            <div>Processing...</div>
+                        </div>
                     </div>
                 </div>
             </div>
