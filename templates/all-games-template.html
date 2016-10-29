@@ -1,3 +1,49 @@
+<div class="row filter">
+
+    <div class="col-md-2">
+        <label for="filter-status">By State</label>
+        <select ng-model="filter.state" id="filter-status" class="form-control" >
+            <option value="0">Waiting</option>
+            <option value="1">Turn X</option>
+            <option value="2">Turn O</option>
+            <option value="3">Won By X</option>
+            <option value="4">Won By O</option>
+            <option value="5">Draw</option>
+        </select>
+    </div>
+    <div class="col-md-2">
+        <label for="filter-game">By Game</label>
+        <input ng-model="filter.gameName" type="text" id="filter-game" class="form-control" placeholder="Game name" />
+    </div>
+
+    <div class="col-md-2">
+        <label for="filter-player">By Player</label>
+        <input ng-model="filter.playerName" type="text" id="filter-player" class="form-control" placeholder="Player name" />
+    </div>
+
+    <div class="col-md-2">
+        <label for="filter-player">Count </label>
+        <input ng-model="filter.count" ng-init="filter.count = 50" ng-min="1" min="1" type="number" id="filter-count" class="form-control" value="50" placeholder="Count" />
+    </div>
+
+    <div class="col-md-2">
+        <label for="filter-order">Order by</label>
+        <select ng-model="filter.order" ng-init="filter.order = '1'" id="filter-order" class="form-control" >
+            <option value="1">Date created</option>
+            <option value="2">Name</option>
+            <option value="3">State</option>
+        </select>
+
+    </div>
+    <div class="col-md-2">
+        <label ></label>
+        <button ng-click="vm.getAllGames(filter.state, filter.gameName, filter.playerName, filter.count, filter.order)" type="button" class="btn btn-primary btn-block" value="Search" >
+            SEARCH <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+        </button>
+    </div>
+</div>
+
+
 <div ng-show="vm.isLoaded" class="row">
     <div ng-show="vm.allGames && vm.allGames.length > 0">
         <div class="col-md-2 well" ng-repeat="game in vm.allGames">
@@ -5,6 +51,7 @@
                 <strong>
                     {{ game.Name }}
                 </strong>
+
             </p>
             <p class="text-center ellipsis">
                 <strong>First player</strong>:
@@ -31,23 +78,31 @@
             </p>
 
             <div class="text-center">
-                <svg svg-board board="game.Board" width="170" height="200"></svg>
+                <svg svg-board board="game.Board" width="170" height="170"></svg>
             </div>
 
-
+            <div class="text-center">
+                <strong>Created:</strong>
+                <span>
+                    {{ game.DateCreated }}
+                </span>
+            </div>
             <div class="row text-center">
                 <a href="/game/{{game.Id}}"
                    ng-if="!!hm.globallySetCurrentUser && (hm.globallySetCurrentUser.Email == game.FirstPlayerName || hm.globallySetCurrentUser.Email == game.SecondPlayerName)"
                    class="btn btn-primary">Details</a>
                 <a href="#" ng-click="vm.joinGame(game.Id)" ng-if="game.State == 0 && game.FirstPlayerName != hm.globallySetCurrentUser.Email && !!hm.globallySetCurrentUser" class="btn btn-warning">Join</a>
             </div>
+
+            <div ng-if="!!game.IsPrivate && !!vm.userGames" class="privateGame">
+                <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+            </div>
         </div>
     </div>
     <div ng-hide="vm.allGames && vm.allGames.length > 0">
 
         <div class="text-center">
-            <p class="leaad text-warning ">There are no games</p>
-            <a href="/games/all" class="btn btn-primary">Check all games</a>
+            <p class="lead text-warning ">There are no games</p>
         </div>
     </div>
 </div>

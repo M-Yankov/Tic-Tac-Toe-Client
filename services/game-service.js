@@ -22,10 +22,20 @@
             return dataService.postRequest('api/games/play', tileRequest);
         }
 
-        function allGames() {
+        function allGames(state, gameName, playerName, count, order) {
             var deferred = $q.defer();
 
-            dataService.getRequest('api/games/all')
+            var query = {
+                state: state,
+                gameName: gameName,
+                playerName: playerName,
+                count: count,
+                order: order
+            };
+
+            var url = 'api/games/all/';
+
+            dataService.getRequest(url, query)
                 .then(function (allGames) {
                     deferred.resolve(allGames);
                 }, function (error) {
@@ -36,8 +46,26 @@
             return deferred.promise;
         }
 
-        function getPrivateGames() {
-            return dataService.getRequest('api/games/PrivateGames');
+        function getPrivateGames(state, gameName, playerName, count, order) {
+
+            var query = {
+                state: state,
+                gameName: gameName,
+                playerName: playerName,
+                count: count,
+                order: order
+            };
+
+            return dataService.getRequest('api/games/PrivateGames/', query);
+        }
+
+        function setQueryParameter(parameterValue, parameterName, url) {
+            var parameter = !!parameterValue ?  parameterName + '=' + parameterValue : '';
+            if (url[ url.length - 1] !== '?') {
+                parameter = '&' + parameter;
+            }
+
+            return parameter;
         }
 
         return {

@@ -13,6 +13,26 @@ div#container .panel .panel-body .well {
     min-height: 425px;
 }
 
+.col-md-2.well {
+    position: relative;
+}
+
+.col-md-2.well .privateGame {
+    position: absolute;
+    color: white;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-top: 55px solid #2a9fd6;
+    border-left: 55px solid transparent;
+}
+
+.col-md-2.well .privateGame .glyphicon.glyphicon-lock {
+    top: -43px;
+    left: -20px;
+}
+
 .jumbotron {
     border-radius: 5px;
     padding: 48px 60px;
@@ -109,4 +129,8 @@ svg {
     overflow-x: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+}
+
+div.row.filter {
+    margin-bottom: 2%;
 }

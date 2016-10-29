@@ -9,8 +9,12 @@
 
         getAllGames();
 
-        function getAllGames() {
-            gameManager.getPrivateGames()
+        vm.userGames = true;
+        vm.getAllGames = getAllGames;
+
+        function getAllGames(state, gameName, playerName, count, order) {
+            vm.isLoaded = false;
+            gameManager.getPrivateGames(state, gameName, playerName, count, order)
                 .then(function (games) {
                     vm.allGames = games;
                     vm.isLoaded = true;

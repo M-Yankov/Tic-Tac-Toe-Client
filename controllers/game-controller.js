@@ -51,8 +51,11 @@
 
         getAllGames();
 
-        function getAllGames() {
-            gameManager.allGames()
+        vm.getAllGames = getAllGames;
+
+        function getAllGames(state, gameName, playerName, count, order) {
+            vm.isLoaded = false;
+            gameManager.allGames(state, gameName, playerName, count, order)
                 .then(function (games) {
                     vm.allGames = games;
                     vm.isLoaded = true;
