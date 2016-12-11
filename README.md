@@ -9,9 +9,9 @@ desktop and laptop computers.
 You can check the live demo [here](https://tic-tac-toe-client.herokuapp.com/).
 
 ### Requirements
-Node >= 6.9.1
-npm >= 3.10.8
-grunt >= 1.0.1
+Node >= 6.9.1  <br />
+npm >= 3.10.8 <br />
+grunt >= 1.0.1 <br />
 
 ### Run application
 To run the client server with angular. Open `CMD` in root directory of project and type `npm install` after that
