@@ -45,7 +45,6 @@
         $scope.$on('$destroy', function () {
             // Make sure that the interval is destroyed too
             $interval.cancel(promiseToDestroy);
-            console.log('Interval canceled on destroy');
         });
 
         getAllGames();
@@ -194,7 +193,6 @@
                         notifier.error('You lose!', 'Game over');
                     }
 
-                    console.log('interval canceled on win');
                     $interval.cancel(promiseToDestroy);
                     return;
                 }
@@ -203,7 +201,6 @@
                 if (vm.gameInfo.SecondPlayerName !== newGameInfo.SecondPlayerName) {
                     notifier.warning('Opponent just join', 'Info');
                     $('#btn-share').remove();
-                    console.log('Interval canceled on player join');
                     $interval.cancel(promiseToDestroy);
                     return;
                 }
@@ -213,7 +210,6 @@
                 // 1 - turn X
                 // if player is first to play stop
                 if (userMatchCriteria(newGameInfo, currentSymbol, currentUserName)) {
-                    console.log('Interval canceled - current player is on turn');
                     $interval.cancel(promiseToDestroy);
                     return;
                 }
@@ -237,7 +233,6 @@
 
                 }, function (error) {
                     $interval.cancel(GameDetails);
-                    console.log('Interval canceled on error');
                     notifier.error('Reasons: id or you are not participate in the game', 'Game not found!');
                     $location.path('/games/all');
                 });
