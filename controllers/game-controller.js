@@ -1,4 +1,4 @@
-/* globals angular, hm*/
+/* globals angular, hm, $*/
 (function () {
     'use strict';
 
@@ -23,8 +23,8 @@
 
                             if (!!gameDetails.SecondPlayerName ||
                                 gameDetails.State !== 0 ||
-                                gameDetails.FirstPlayerName === user.Email ) {
-                                notifier.error('Game not available.' , 'An error');
+                                gameDetails.FirstPlayerName === user.Email) {
+                                notifier.error('Game not available.', 'An error');
                                 $location.path('/games/all');
                             }
 
@@ -45,9 +45,8 @@
         $scope.$on('$destroy', function () {
             // Make sure that the interval is destroyed too
             $interval.cancel(promiseToDestroy);
-            console.log('Destroyed');
+            console.log('Interval canceled on destroy');
         });
-
 
         getAllGames();
 
@@ -78,10 +77,9 @@
                 });
         }
 
-        vm.change = function(isChecked, game){
+        vm.change = function (isChecked, game) {
             if (!isChecked) {
-                console.log(game);
-            	game.password = '';
+                game.password = '';
             }
         };
 
@@ -134,6 +132,7 @@
                     GameDetails();
 
                     // start waiting again
+                    $interval.cancel(promiseToDestroy);
                     promiseToDestroy = $interval(GameDetails, 3000);
                 }, function (errorResponse) {
                     var errors = {};
@@ -151,35 +150,70 @@
                 });
         };
 
+        vm.copyLink = function (gameId) {
+            var inputShareLink = document.createElement('input');
+            // var inputShareLink = document.getElementById(elementId);
+            inputShareLink.value = document.location.host + '/game/join/' + gameId;
+            inputShareLink.style.position = "absolute";
+            inputShareLink.style.left = "-120%";
+            inputShareLink.style.top = "0";
+            inputShareLink.id = 'copy-link';
+
+            document.body.appendChild(inputShareLink);
+
+            inputShareLink.select();
+            var resultCopy = document.execCommand('copy');
+
+            document.body.removeChild(inputShareLink);
+        };
+
         function GameDetails() {
-            var idOfTheGame = $routeParams.id;
+            var idOfTheGame = $routeParams.id,
+                currentUserName = identity.getUserNoPromise().Email;
 
             function stopIntervalIfBoardChanged(newGameInfo) {
-                if (!vm.gameInfo) {
+
+                function userMatchCriteria(curentGameInfo, symbol, userName) {
+                    return (curentGameInfo.FirstPlayerSymbol === symbol && curentGameInfo.FirstPlayerName === userName) ||
+                        (curentGameInfo.SecondPlayerSymbol === symbol && curentGameInfo.SecondPlayerName === userName);
+                }
+
+                if (!vm.gameInfo || newGameInfo.State === 0) {
                     return;
                 }
 
-                // If game is finished stop!
+                // If game is finished stop
                 if (newGameInfo.State >= 3) {
+                    var winSymbol = newGameInfo.State === 3 ? 'X' : 'O';
+
+                    if (newGameInfo.State === 5) {
+                        notifier.warning('Draw!', '');
+                    } else if (userMatchCriteria(newGameInfo, winSymbol, currentUserName)) {
+                        notifier.success('You win!', 'Congratulations');
+                    } else {
+                        notifier.error('You lose!', 'Game over');
+                    }
+
+                    console.log('interval canceled on win');
                     $interval.cancel(promiseToDestroy);
                     return;
                 }
 
-                // if opponent comes - stop!
+                // if opponent comes - stop
                 if (vm.gameInfo.SecondPlayerName !== newGameInfo.SecondPlayerName) {
                     notifier.warning('Opponent just join', 'Info');
+                    $('#btn-share').remove();
+                    console.log('Interval canceled on player join');
                     $interval.cancel(promiseToDestroy);
                     return;
                 }
 
+                var currentSymbol = newGameInfo.State === 1 ? 'X' : 'O';
+
+                // 1 - turn X
                 // if player is first to play stop
-                if (newGameInfo.State === 1 && newGameInfo.FirstPlayerName === $scope.$parent.hm.globallySetCurrentUser.Email) {
-                    $interval.cancel(promiseToDestroy);
-                    return;
-                }
-
-                // if player is second to play stop
-                if (newGameInfo.State === 2 && newGameInfo.SecondPlayerName === $scope.$parent.hm.globallySetCurrentUser.Email) {
+                if (userMatchCriteria(newGameInfo, currentSymbol, currentUserName)) {
+                    console.log('Interval canceled - current player is on turn');
                     $interval.cancel(promiseToDestroy);
                     return;
                 }
@@ -197,11 +231,13 @@
                     vm.gameInfo = gameDetails;
 
                     if (vm.gameInfo.State >= 3) {
+                        // the game is already finished
                         $interval.cancel(promiseToDestroy);
                     }
 
                 }, function (error) {
                     $interval.cancel(GameDetails);
+                    console.log('Interval canceled on error');
                     notifier.error('Reasons: id or you are not participate in the game', 'Game not found!');
                     $location.path('/games/all');
                 });
@@ -209,6 +245,6 @@
     }
 
     angular.module('tttGame.controllers')
-        .controller('GameController', ['$location', '$routeParams', '$interval', 'notifier', 'gameManager', '$scope' , 'identity', GameController]);
+        .controller('GameController', ['$location', '$routeParams', '$interval', 'notifier', 'gameManager', '$scope', 'identity', GameController]);
 
 }());

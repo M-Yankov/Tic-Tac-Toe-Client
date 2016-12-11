@@ -5,5 +5,8 @@
   "license": "MIT",
   "description": "Tic tac toe game SPA",
   "repository": "https://github.com/M-Yankov/Tic-Tac-Toe-Client/",
-  "devDependencies": {}
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-uglify": "^2.0.0"
+  }
 }

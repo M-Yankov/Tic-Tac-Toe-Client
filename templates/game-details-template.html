@@ -1,8 +1,15 @@
 <div class="panel panel-primary ">
     <div class="panel-heading">
-        <h3 class="panel-title">Tic-Tac-Toe Game:
-            <div class="row text-center"> {{vm.gameInfo.Name}}</div>
-        </h3>
+        <div class="panel-title">
+            Tic-Tac-Toe Game:
+
+        </div>
+        <div class=" text-center">
+            <h3>
+
+                {{vm.gameInfo.Name}}
+            </h3>
+        </div>
     </div>
     <div class="panel-body " style="padding: 30px;">
 
@@ -35,6 +42,13 @@
                     </div>
                 </div>
             </form>
+
+            <button id="btn-share" ng-show="vm.gameInfo.State == 0" class="pull-right btn-primary btn" ng-click="vm.copyLink(vm.gameInfo.Id)" data-toggle="tooltip" data-placement="top" data-original-title="Copied!">
+
+                Share
+                <span class="glyphicon glyphicon-share" aria-expanded="true"></span>
+            </button>
+
         </div>
 
         <br/>
@@ -49,3 +63,9 @@
     </div>
     <hr/>
 </div>
+
+<script>
+    $(document).ready(function(){
+        var object = $('[data-toggle="tooltip"]').tooltip({ trigger: 'focus', delay: { show: 50, hide: 1000 }});
+    });
+</script>

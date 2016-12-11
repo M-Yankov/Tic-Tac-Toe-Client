@@ -2,7 +2,8 @@
 
     <div class="col-md-2">
         <label for="filter-status">By State</label>
-        <select ng-model="filter.state" id="filter-status" class="form-control" >
+        <select ng-model="filter.state" id="filter-status" ng-init="filter.state = '99'" class="form-control" >
+            <option value="99" selected="selected"></option>
             <option value="0">Waiting</option>
             <option value="1">Turn X</option>
             <option value="2">Turn O</option>
@@ -127,7 +128,7 @@
                 <div>side.</div>
             </div>
         </div>
-        It's slow I know, but cannot do anything right now.
+        It can take some seconds
         <br/>
         If an error occur. Try refresh the page.
     </div>

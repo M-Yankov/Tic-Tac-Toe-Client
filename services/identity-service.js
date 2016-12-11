@@ -26,6 +26,9 @@
             removeUser: function () {
                 currentUser = {};
                 deferred = $q.defer();
+            },
+            getUserNoPromise: function () {
+                return currentUser;
             }
         };
     };

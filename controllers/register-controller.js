@@ -16,10 +16,10 @@
                         vm.isProcessing = false;
                         $location.path('/login');
                     }, function (errorResponse) {
-                        console.log('something is not good. check below:');
-                        console.log(errorResponse);
+                        notifier.error('Contact support!','General error');
                         vm.hasError = true;
                         vm.isProcessing = false;
+
                         if(errorResponse.data && errorResponse.data.ModelState && errorResponse.data.ModelState[""])
                         {
                             var errors = errorResponse.data.ModelState[""];

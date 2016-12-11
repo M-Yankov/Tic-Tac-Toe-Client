@@ -1,15 +1,24 @@
 <div class="row">
     <div class="panel panel-warning ">
         <div class="panel-heading">
-            <h3 class="panel-title">Join in a private game</h3>
+
+            <h3 class="panel-title" ng-if="vm.joinGameDetails.IsPrivate" >Join in a private game</h3>
+            <h3 class="panel-title" ng-if="!vm.joinGameDetails.IsPrivate" >Join in a game</h3>
         </div>
         <div class="panel-body" style="padding: 30px 35% ;">
 
             <h4 class="text-center text-warning" >Game Name: {{vm.joinGameDetails.Name}}</h4>
 
-            <input id="game-password" placeholder="PASSWORD" name="password" class="minimalistic orange text-center" type="password"
-                           ng-model="game.password"/>
-            <button type="button" ng-click="vm.joinGame(vm.joinGameDetails.Id, game.password)" ng-disabled="!game.password || vm.isInGameJoiningProcess" class="minimalistic orange">JOIN</button>
+            <div ng-if="vm.joinGameDetails.IsPrivate">
+                <input id="game-password" placeholder="PASSWORD" name="password" class="minimalistic orange text-center" type="password"
+                               ng-model="game.password"/>
+                <button type="button" ng-click="vm.joinGame(vm.joinGameDetails.Id, game.password)" ng-disabled="!game.password || vm.isInGameJoiningProcess" class="minimalistic orange">JOIN</button>
+            </div>
+
+            <div ng-if="!vm.joinGameDetails.IsPrivate">
+                <button type="button" ng-click="vm.joinGame(vm.joinGameDetails.Id, '')" ng-disabled=" vm.isInGameJoiningProcess" class="minimalistic orange">JOIN</button>
+            </div>
+
             <div ng-show="vm.isInGameJoiningProcess">
                 <div class="col-md-2 col-md-offset-5">
                     <div class="progress progress-striped active">

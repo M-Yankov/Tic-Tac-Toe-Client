@@ -9,7 +9,7 @@
                 <li class="list-group-item"><span class="badge">{{ vm.fullInformation.GamesWon }}</span>Games won</li>
                 <li class="list-group-item"><span class="badge">{{ vm.fullInformation.GamesLose }}</span>Games lose</li>
                 <li class="list-group-item"><span class="badge">{{ vm.fullInformation.GamesDraw}}</span> Games draw</li>
-                <li class="list-group-item"><span class="badge">{{ vm.fullInformation.TotalGames}}</span>Total</li>
+                <li class="list-group-item"><span class="badge">{{ vm.fullInformation.TotalGames}}</span>Total (finished)</li>
                 <li class="list-group-item"><span class="badge bg-success" style="background-color: #77b300">{{vm.fullInformation.GamesWon | gamesWonPercentageFilter:vm.fullInformation.TotalGames}}%</span>Wining
                 </li>
             </ul>
