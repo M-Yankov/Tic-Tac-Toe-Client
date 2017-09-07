@@ -116,7 +116,7 @@
 
     angular.module('tttGame', ['ui.bootstrap', 'ngRoute', 'ngResource', 'ngCookies', 'ngMessages', 'tttGame.directives', 'tttGame.controllers', 'tttGame.services', 'tttGame.filters'])
         .config(['$routeProvider', '$locationProvider', configuration])
-        .constant('domain', 'https://tic-tac-toeserver.apphb.com/')// 'https://tic-tac-toeserver.apphb.com/')
+        .constant('domain', 'https://ttt-game.azurewebsites.net/')
         .run(['$http', '$cookies', '$rootScope', '$location', 'auth', 'notifier', 'dataService', run])
         .value('toastr', toastr);
 
