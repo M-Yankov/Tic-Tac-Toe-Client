@@ -2,7 +2,7 @@
 Client side game
 
 ### Description
-This is the `Tic Tac Toe` game developed using `angular-js` as single page application. The game is running well on 
+This is the `Tic Tac Toe` game developed using `angular-js` as a single page application. The game is running well on 
 desktop and laptop computers. 
 
 ### Demo
@@ -14,8 +14,7 @@ npm >= 3.10.8 <br />
 grunt >= 1.0.1 <br />
 
 ### Run application
-To run the client server with angular. Open `CMD` in root directory of project and type `npm install` after that
- `node scripts\web-server.js` the server is running on [http://localhost:5000](http://localhost:5000)
+To run the client server with angular. Open `CMD` in root directory of the project and type `npm install`. After packages are installed execute `node scripts\web-server.js` and the server would run on [http://localhost:5000](http://localhost:5000)
 
 ### Apply `js` changes
 If the `js` files are updated or changed open `CMD` in root directory of project and type `grunt`. Ensure you have
@@ -23,4 +22,4 @@ installed `grunt` globally: `npm list grunt -g` should return `-- grunt@1.0.1` *
 
 ### REST server 
 ASP.NET Web Api [https://github.com/M-Yankov/Tic-Tac-Toe-Server](https://github.com/M-Yankov/Tic-Tac-Toe-Server).
-Hosted at appharbour.
+Hosted at ~~appharbour~~ Azure.
